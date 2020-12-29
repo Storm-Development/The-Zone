@@ -30,7 +30,6 @@ public class Control : MonoBehaviour
     {
         
         currentz = transform.position.z;
-        float frameTime = Time.time - timeCheck;
         float horizontal = transform.position.x;
 
         Debug.Log(Time.time);
@@ -57,14 +56,14 @@ public class Control : MonoBehaviour
 
         if(Time.time < jumpTime)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, jumpHeight, currentz + currentSpeed), frameTime);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, jumpHeight, currentz + currentSpeed), Time.deltaTime);
         } else
         {
             if (Input.GetKeyDown("w"))
             {
                 jumpTime = Time.time + hangTime;
             }
-            transform.position = Vector3.Lerp(transform.position, new Vector3(horizontal, 0.0f, currentz + currentSpeed), frameTime);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(horizontal, 0.0f, currentz + currentSpeed), Time.deltaTime);
         }
        
         timeCheck = Time.time;
